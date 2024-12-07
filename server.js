@@ -7,7 +7,7 @@ dotenv.config(); // Load environment variables
 const useSftp = process.env.ORGCHART_USE_SFTP === "true" ? true : false;
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.ORGCHART_PORT || 4000;
 
 // Serve static files from the dist directory
 app.use(express.static(path.join(__dirname, 'dist')));
