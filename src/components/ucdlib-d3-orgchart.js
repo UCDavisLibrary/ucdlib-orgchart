@@ -172,7 +172,7 @@ export default class UcdlibD3OrgChart extends LitElement {
           node.children
             ? `<i class="fas fa-chevron-up"></i>`
             : `<i class="fas fa-chevron-down"></i>`
-        }</span> ${node.data._directSubordinates}  </div>`;
+        }</span> ${node.data._totalSubordinates}  </div>`;
       })
       .nodeContent(function (d) {
 
