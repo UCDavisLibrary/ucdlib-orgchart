@@ -83,7 +83,7 @@ export default class UcdlibD3OrgChart extends LitElement {
    * @description Fit the Org Chart to Screen
    */
   fitOrg(){
-    this.orgChart.expandAll().fit();
+    this.orgChart.fit();
   }
 
   /**
@@ -160,15 +160,16 @@ export default class UcdlibD3OrgChart extends LitElement {
       .container(container)
       .data(jsonData)
       .rootMargin(100)
+      .compact(false)
       .nodeWidth(() => 250)
       .nodeHeight(() => 80)
-      .childrenMargin(() => 85)
+      .childrenMargin(() => 125)
       .compactMarginBetween(() => 75)
 
       .setActiveNodeCentered(true)
       .compactMarginPair(() => 80)
       .buttonContent(({ node }) => {
-        return `<div style="border-radius:3px;padding:8px;font-size:10px;margin:auto auto;color:white;background-color:${node.color}"> <span style="font-size:9px">${
+        return `<div style="width:30px;text-align:center;border-radius:3px;padding:8px;font-size:10px;margin:auto auto;color:white;background-color:${node.color}"> <span style="font-size:9px">${
           node.children
             ? `<i class="fas fa-chevron-up"></i>`
             : `<i class="fas fa-chevron-down"></i>`
@@ -178,18 +179,18 @@ export default class UcdlibD3OrgChart extends LitElement {
 
         const departmentColor = 
           {
-            "Online Strategy" : '#00b2e3',
-            "Research and Learning": '#00524c',
-            "Scholarly Resources": '#f18a00',
-            "Library External Relations": '#79242f',
-            "DataLab": '#76236c',
-            "Library Finance and Administration": '#3dae2b',
-            "Office of the University Librarian": '#c10230'
+            "Online Strategy" : '#6fcfeb',
+            "Research and Learning": '#aada91',
+            "Scholarly Resources": '#6cca98',
+            "Library External Relations": '#ff8189',
+            "DataLab": '#73abdd',
+            "Library Finance and Administration": '#f095cd',
+            "Office of the University Librarian": '#f93549'
           };
 
 
         if(d.depth == 0){
-          d.color = '#c10230';
+          d.color = '#f93549';
         }
         else if(d.depth == 1) {
           d.color = departmentColor[d.data.departmentName];          
@@ -202,9 +203,9 @@ export default class UcdlibD3OrgChart extends LitElement {
                   <div style="background-color:white; position:absolute;width:${d.width}px;height:${d.height}px;">
   
                         <div style="position:absolute;top:-20px;width:${d.width}px;text-align:center;color:#fafafa;">
-                              <div style="margin:0 auto;background-color:${d.color};display:inline-block;padding:8px;padding-bottom:0px;border-radius:5px"> ${d.data.departmentName}</div>
+                              <div style="margin:-25px 0px 0px auto;background-color:${d.color};display:inline-block;height:18px;padding:8px;padding-bottom:0px;border-radius:5px"> ${d.data.departmentName}</div>
                         </div>
-                        <div style="background-color:${d.color};height:fit-content;text-align:center;padding:12px;color:#ffffff;font-weight:bold;font-size:16px;border-radius:15px;">
+                        <div style="background-color:${d.color};height:fit-content;text-align:center;padding:12px;color:#ffffff;font-weight:bold;font-size:16px;border-radius:7px;">
                             <span>${d.data.fullName}<span><br />
                             <span style="font-size:12px;">${d.data.title}</span>
                         </div>
