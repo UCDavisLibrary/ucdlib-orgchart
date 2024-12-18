@@ -2,7 +2,7 @@ const Client = require('ssh2-sftp-client');  // Use require instead of import
 const fs = require('fs/promises');
 
 /**
- * @description Manages pg data for separation form
+ * @description Manages SFTP to send and get files
  */
 class SFTP {
   constructor(config) {
@@ -11,7 +11,10 @@ class SFTP {
     this.filepath = '/var/www/vhost/files.library.ucdavis.edu/htdocs/orgchart';
   }
 
-
+   /**
+     * @description Get csv file to the files server
+     * @return {Object} status
+     */
   async getJsonFromSftp() {
     const remoteFilePath = `${this.filepath}/current_org_data.json`;
     const localFilePath = './downloaded_org_data.json';
@@ -41,6 +44,10 @@ class SFTP {
         }
     }
 
+   /**
+     * @description Send csv file to the files server
+     * @return {Object} status
+     */
     async sendJsonToSftp(jsonData) {   
         const remoteFilePath = `${this.filepath}/current_org_data.json`; 
         const localFilePath = './to_upload_org_data.json';
@@ -67,6 +74,10 @@ class SFTP {
         }
     }
 
+    /**
+     * @description Send dist file to the files server
+     * @return {Object} status
+     */
     async sendDistToSftp(filename) {   
         const remoteFilePath = `${this.filepath}/${filename}.js`; 
         const localFilePath = `./dist/${filename}.js`;
@@ -92,6 +103,10 @@ class SFTP {
         }
     }
 
+    /**
+     * @description Rename the org chart csv file 
+     * @return {Object} status
+     */
     async renameJsonWithSftp(renameName) {    
         const remoteRenamedFilePath = `${this.filepath}/${renameName}.json`;
         const remoteFilePath = `${this.filepath}/current_org_data.json`;
@@ -114,28 +129,10 @@ class SFTP {
         }
     }
 
-    async deleteJsonWithSftp(deleteName) {    
-        const remoteDeleteFilePath = `${this.filepath}/${deleteName}.json`;
-    
-        try {    
-            // Connect to SFTP server
-            await this.sftp.connect(this.sftpConfig);
-            console.log('Connected to SFTP server.');
-    
-            // Upload the JSON file
-            await sftp.delete(remoteDeleteFilePath);
-            console.log(`File renamed to ${remoteFilePath}`);
-        } catch (err) {
-            let errorMessage = "Error deleting file" + err.message;
-            return {"sftp_error" :  errorMessage}
-        } finally {
-            // Close SFTP connection
-            await this.sftp.end();
-            console.log('SFTP connection closed.');
-        }
-    }
-
-    
+    /**
+     * @description Checks if the folder is empty
+     * @return {Object} status
+     */
     async isFolderEmpty() {
     try {
         // Connect to the SFTP server
