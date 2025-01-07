@@ -264,7 +264,7 @@ export default class UcdlibD3OrgChart extends LitElement {
             "Scholarly Resources": '#FFBF00',
             "Library External Relations": '#F095CD',
             "DataLab": '#AADA91',
-            "Library Finance and Administration": '#FF8189',
+            "Library Finance": '#FF8189',
             "Office of the University Librarian": '#00C4B3'
           };
 
