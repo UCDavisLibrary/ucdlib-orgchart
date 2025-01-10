@@ -36,7 +36,7 @@ class SFTP {
             return jsonData;
         } catch (err) {
             let errorMessage = "Error downloading file" + err.message;
-            return {"sftp_error" :  errorMessage}
+            return {"error" :  errorMessage}
         } finally {
             // Close SFTP connection
             await this.sftp.end();
@@ -66,11 +66,12 @@ class SFTP {
             console.log(`JSON File uploaded successfully to ${remoteFilePath}`);
         } catch (err) {
             let errorMessage = "Error uploading json file" + err.message;
-            return {"sftp_error" :  errorMessage}
+            return {"error" :  errorMessage}
         } finally {
             // Close SFTP connection
             await this.sftp.end();
             console.log('SFTP connection closed.');
+            return {"success" :  "Json File is sent."}
         }
     }
 
@@ -95,11 +96,12 @@ class SFTP {
             console.log(`Dist File uploaded successfully to ${remoteFilePath}`);
         } catch (err) {
             let errorMessage = "Error uploading dist file" + err.message;
-            return {"sftp_error" :  errorMessage}
+            return {"error" :  errorMessage}
         } finally {
             // Close SFTP connection
             await this.sftp.end();
             console.log('SFTP connection closed.');
+            return {"success" :  "Dist File is sent."}
         }
     }
 
@@ -121,11 +123,12 @@ class SFTP {
             console.log(`File renamed to ${remoteFilePath}`);
         } catch (err) {
             let errorMessage = "Error renaming file" + err.message;
-            return {"sftp_error" :  errorMessage}
+            return {"error" :  errorMessage}
         } finally {
             // Close SFTP connection
             await this.sftp.end();
             console.log('SFTP connection closed.');
+            return {"success" :  "Successfully Renamed File."}
         }
     }
 
@@ -150,7 +153,7 @@ class SFTP {
         }
     } catch (err) {
         let errorMessage = "Error" + err.message;
-        return {"sftp_error" :  errorMessage}
+        return {"error" :  errorMessage}
     } finally {
         // Close the SFTP connection
         await this.sftp.end();

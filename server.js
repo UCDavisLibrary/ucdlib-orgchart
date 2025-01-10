@@ -21,9 +21,9 @@ let sftpConfig = {
 
 const distName = "org_bundle";
 
-// Function to initialize and run SFTP tasks
+// Function to run SFTP tasks
 async function runSftpTasks() {
-    // Instantiate the sftp class with environment variables
+    //  Run sftp class with environment variables
 
     if(useSftp) {
         console.log("SFTP is enabled. Performing SFTP operations...");
@@ -32,7 +32,10 @@ async function runSftpTasks() {
 
         try {
             // send a org_bundle.js file to SFTP
-            await sftpClient.sendDistToSftp(distName);
+            let distStatus = await sftpClient.sendDistToSftp(distName);
+
+            if(distStatus && distStatus.error) console.error("Error uploading dist file to sftp.")
+
             console.log("File uploaded successfully!");
     
         } catch (error) {

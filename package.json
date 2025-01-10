@@ -23,8 +23,12 @@
     "d3-org-chart": "^3.1.1",
     "dotenv": "^16.4.7",
     "fs": "^0.0.1-security",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.2",
     "normalize-scss": "^7.0.1",
-    "ssh2-sftp-client": "^9.1.0"
+    "ssh2-sftp-client": "^9.1.0",
+    "svg2pdf": "^1.1.1",
+    "svg2pdf.js": "^2.2.4"
   },
   "devDependencies": {
     "@ucd-lib/cork-app-build": "^0.4.2",
