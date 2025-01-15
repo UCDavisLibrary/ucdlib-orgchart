@@ -282,6 +282,12 @@ export default class UcdlibD3OrgChart extends LitElement {
       }
       return null; // No color found
     }
+
+    // const svgElement = document.querySelector('.svg-chart-container'); // Adjust for your chart's specific selector
+    // const boundingBox = svgElement.getBBox(); // Get the bounding box of the entire SVG
+    // console.log("B:", boundingBox);
+    // svgElement.setAttribute('viewBox', `${boundingBox.x} ${boundingBox.y} ${boundingBox.width} ${boundingBox.height}`);
+    // svgElement.setAttribute('preserveAspectRatio', 'xMinYMin meet');
   
     // Bind the org chart to the container
     this.orgChart
@@ -310,7 +316,7 @@ export default class UcdlibD3OrgChart extends LitElement {
       })
       .compactMarginPair(() => 80)
       .buttonContent(({ node }) => {
-        return `<div style="min-width:34px;height:17px;text-align:center;border-radius:3px;padding:8px 8px 6px 8px;font-size:10px;margin-top:${node.depth == 0 ? '23px' : '5px'};color:#022851;background-color:${node.color}"> <span style="font-size:9px">${
+        return `<div style="min-width:34px;height:20px;text-align:center;border-radius:3px;padding:8px 8px 6px 8px;font-size:10px;margin-top:${node.depth == 0 ? '55px' : '35px'};color:#022851;background-color:${node.color}"> <span style="font-size:9px">${
           node.children
             ? `<i>${this.icons.chevronUp}</i>`
             : `${this.icons.chevronDown}`
@@ -341,10 +347,10 @@ export default class UcdlibD3OrgChart extends LitElement {
 
   
         return `
-                  <div style="position:absolute;width:${d.width}px;height:${d.height}px;">
+                  <div style="width:${d.width}px;height:${d.height}px;">
   
-                        <div style="position:absolute;top:-20px;width:${d.width}px;text-align:center;color:#022851;">
-                              <div style="margin:-25px 0px 0px auto;display:inline-block;height:18px;padding:8px;padding-bottom:0px;border-radius:5px"> ${d.data.departmentName}</div>
+                        <div style="top:-20px;width:${d.width}px;text-align:center;color:#022851;">
+                              <div style="display:inline-block;height:18px;padding:8px;padding-bottom:0px;border-radius:5px"> ${d.data.departmentName}</div>
                         </div>
                         <div style="background-color:${d.color};height:fit-content;text-align:center;padding:12px;color:#022851;font-weight:bold;font-size:16px;border-radius:5px;">
                             <span>${d.data.fullName}<span><br />

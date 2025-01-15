@@ -63,6 +63,8 @@ export function styles() {
       margin:0;
       background-color:#EBF3FA;
       height:600px;
+      overflow: hidden;
+
     }
 
     .top-options {
@@ -70,7 +72,19 @@ export function styles() {
     }
     .svg-chart-container {
       height:600px;
+      width: 100%;
+
+    
     }
+    .chart {
+      height:500px;
+    }
+
+    svg {
+      overflow: visible; /* Prevent clipping */
+    }
+    
+
     .bottom-options {
       margin-top:9.5px;
       padding-top:9.5px;
