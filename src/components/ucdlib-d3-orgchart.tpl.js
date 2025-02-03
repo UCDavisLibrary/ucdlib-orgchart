@@ -113,7 +113,6 @@ return html`
               <button title="Expand Out Chart" class="btn--options" @click="${this.expandOrg}">${this.icons.expand} &nbsp; Expand All</button>
               <button title="Collapse Chart" class="btn--options" @click="${this.collapseOrg}">${this.icons.collapse} &nbsp; Collapse All</button>
               <button title="Fit Screen" class="btn--options" @click=${this.fitOrg}>${this.icons.fit} &nbsp; Fit Screen</button>
-              <button title="Export PDF" class="btn--options" @click="${e => this.exportPDF(false)}">${this.icons.exportPdf} &nbsp; Export PDF</button> 
             </div>
         </div>
 
