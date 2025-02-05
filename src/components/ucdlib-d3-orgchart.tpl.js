@@ -62,7 +62,7 @@ export function styles() {
       padding-top:10px; 
       margin:0;
       background-color:#EBF3FA;
-      height:600px;
+      height:860px;
       overflow: hidden;
 
     }
@@ -83,8 +83,23 @@ export function styles() {
     svg {
       overflow: visible; /* Prevent clipping */
     }
-    
 
+    .search-bar { 
+      width: 300px;
+      height: 50px;
+      padding: 10px;
+      background-color:white;
+      color: #13639E;
+      font-weight: 500;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .node-rect {
+      stroke:none;
+    }
+    
     .bottom-options {
       margin-top:9.5px;
       padding-top:9.5px;
@@ -113,8 +128,20 @@ return html`
               <button title="Expand Out Chart" class="btn--options" @click="${this.expandOrg}">${this.icons.expand} &nbsp; Expand All</button>
               <button title="Collapse Chart" class="btn--options" @click="${this.collapseOrg}">${this.icons.collapse} &nbsp; Collapse All</button>
               <button title="Fit Screen" class="btn--options" @click=${this.fitOrg}>${this.icons.fit} &nbsp; Fit Screen</button>
+              <button title="Change Layout" class="btn--options" @click=${this.changeLayout}>${this.icons.fit} &nbsp; ${this.isVertical ? html`Horizontal`:html`Vertical`} Layout</button>
+            </div>
+            <div class="bottom-options">
+              <!-- <button title="Export PDF" class="btn--options" @click="${e => this.exportPDF(false)}">${this.icons.exportPdf} &nbsp; Export PDF</button>  -->
+              <input
+                class="search-bar"
+                type="search"
+                placeholder="Search By Name..."
+                @input=${(e) => this.filterChart(e)}
+              />
             </div>
         </div>
+
+
 
 
         <div class='chart-container' id="chart-container" ></div>
