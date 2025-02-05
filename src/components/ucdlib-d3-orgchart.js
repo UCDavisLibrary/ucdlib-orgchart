@@ -192,12 +192,10 @@ export default class UcdlibD3OrgChart extends LitElement {
    */
    changeLayout(){
      if(this.isVertical){
-      this.orgChart.compact(false).render();
-      this.fitOrg();
+      this.orgChart.compact(false).render().fit();
       this.isVertical = false;
      } else {
-      this.orgChart.compact(true).render();
-      this.fitOrg();
+      this.orgChart.compact(true).render().fit();
       this.isVertical = true;
      }
   }
@@ -312,13 +310,15 @@ export default class UcdlibD3OrgChart extends LitElement {
    * @description Fit the Org Chart to Screen
    */
    fitOrg(){
-    this.orgChart.fit({
-      onCompleted: function () {
-        this.newCenter();
-      }.bind(this) // Bind 'this' to the current instance
-    });
-
-
+    if(this.isVertical){
+      this.orgChart.fit();
+    } else {
+      this.orgChart.fit({
+        onCompleted: function () {
+          this.newCenter();
+        }.bind(this) // Bind 'this' to the current instance
+      });
+    }
   }
 
 
