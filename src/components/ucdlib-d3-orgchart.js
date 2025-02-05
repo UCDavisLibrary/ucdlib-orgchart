@@ -192,10 +192,12 @@ export default class UcdlibD3OrgChart extends LitElement {
    */
    changeLayout(){
      if(this.isVertical){
-      this.orgChart.compact(false).render().fit()
+      this.orgChart.compact(false).render();
+      this.fitOrg();
       this.isVertical = false;
      } else {
-      this.orgChart.compact(true).render().fit()
+      this.orgChart.compact(true).render();
+      this.fitOrg();
       this.isVertical = true;
      }
   }
