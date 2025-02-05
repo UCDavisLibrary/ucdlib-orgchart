@@ -163,7 +163,7 @@ export default class UcdlibD3OrgChart extends LitElement {
   */
   filterChart(e) {
     // Get input value
-    const value = e.srcElement.value;
+    const value = e.target.value;
 
     // Clear previous higlighting
     this.orgChart.clearHighlighting();
