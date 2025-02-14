@@ -397,12 +397,17 @@ export default class UcdlibD3OrgChart extends LitElement {
 
         this.orgChart.getChartState().lastTransform = transform;
         this.CurrentKTransform = transform.k;
+
       })
       .compactMarginPair(() => 80)
       .buttonContent(({ node }) => {
-        return `<div style="user-select:none;min-width:30px;height:20px;text-align:center;border-radius:3px;padding:8px 6px 6px 6px;font-size:10px;color:#022851;background-color:${node.color}"> <span style="font-size:9px">${
+        return `<div 
+          role="button" 
+          tabindex="0" 
+          aria-label="Expand or collapse subordinates, total subordinates: ${node.data._totalSubordinates}" 
+          style="user-select:none;min-width:30px;height:20px;text-align:center;border-radius:3px;padding:8px 6px 6px 6px;font-size:10px;color:#022851;background-color:${node.color}"> <span style="font-size:9px">${
           node.children
-            ? `<i>${this.icons.chevronUp}</i>`
+            ? `<i aria-hidden="true">${this.icons.chevronUp}</i>`
             : `${this.icons.chevronDown}`
         }</span> ${node.data._totalSubordinates}  </div>`;
       })
@@ -434,12 +439,12 @@ export default class UcdlibD3OrgChart extends LitElement {
 
   
         return `
-                  <div style="user-select:none;width:${d.width}px;height:${highlightHeight};border-radius:10px;border: ${d.data._highlighted || d.data._upToTheRootHighlighted ? highlightColor : nohighlightColor}">
+                  <div role="group" aria-label="Employee Information" tabindex="0" style="user-select:none;width:${d.width}px;height:${highlightHeight};border-radius:10px;border: ${d.data._highlighted || d.data._upToTheRootHighlighted ? highlightColor : nohighlightColor}">
   
-                        <div style="top:-20px;width:${d.width}px;text-align:center;color:#022851;">
-                              <div style="display:inline-block;height:18px;padding:8px;padding-bottom:0px;border-radius:5px;font-weight:bold;font-size:12px;"> ${d.data.departmentName}</div>
+                        <div aria-label="Department: ${d.data.departmentName}" tabindex="0" style="top:-20px;width:${d.width}px;text-align:center;color:#022851;">
+                              <div aria-hidden="true" style="display:inline-block;height:18px;padding:8px;padding-bottom:0px;border-radius:5px;font-weight:bold;font-size:12px;"> ${d.data.departmentName}</div>
                         </div>
-                        <div style="display:flex; justify-content: center;vertical-align:middle; align-items:center;background-color:${d.color};height:45px;text-align:center;padding:12px;color:#022851;font-weight:bold;font-size:14px;border-radius:5px;">
+                        <div role="group" aria-label="Employee: ${d.data.fullName}, ${d.data.title}" tabindex="0" style="display:flex; justify-content: center;vertical-align:middle; align-items:center;background-color:${d.color};height:45px;text-align:center;padding:12px;color:#022851;font-weight:bold;font-size:14px;border-radius:5px;">
                             <span>${d.data.fullName}<span><br />
                             <span style="font-size:12px;font-weight:lighter;">${d.data.title}</span>
                         </div>
@@ -450,6 +455,10 @@ export default class UcdlibD3OrgChart extends LitElement {
       .render();
 
       this.fitOrg();
+
+      this.orgChart.zoomBehavior().filter((event) => {
+        return event.type !== "wheel"; // Disable zoom via mouse wheel
+      }).render();
   }
 
 }

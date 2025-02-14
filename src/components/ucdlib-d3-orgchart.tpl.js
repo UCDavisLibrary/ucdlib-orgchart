@@ -67,7 +67,6 @@ export function styles() {
       height:860px;
       overflow: hidden;
       transition: height 0.3s ease-in-out; /* Smooth transition */
-
     }
 
     .top-options {
@@ -240,17 +239,66 @@ return html`
             <div class="top-options">
               <div class="top-item display" style="font-size: 16.62px;color:#022851; ">
                 Display: 
-                <button title="Vertical Layout" style="margin-left:8px;" class="btn--options layout" @click="${this.changeVertical}">${this.icons.vertical}</button>
-                <button title="Horizontal Layout" class="btn--options layout" @click="${this.changeHorizontal}">${this.icons.horizontal}</button>
+                <button title="Vertical Layout" style="margin-left:8px;" class="btn--options layout" @click="${this.changeVertical}" 
+                  tabindex="0" 
+                  role="button" 
+                  aria-label="Switch to Vertical Layout" 
+                  @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.changeVertical(e)}">
+                  ${this.icons.vertical}
+                </button>
+                <button title="Horizontal Layout" class="btn--options layout" @click="${this.changeHorizontal}"
+                  tabindex="0" 
+                  role="button" 
+                  aria-label="Switch to Horizontal Layout" 
+                  @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.changeHorizontal(e)}">                  ${this.icons.horizontal}
+                </button>
               </div>
               <div class="top-item btn-options">
-                <button title="Expand Out Chart" class="btn--options lgScreenView" @click="${this.expandOrg}">${this.icons.expand} &nbsp; Expand All</button>
-                <button title="Collapse Chart" class="btn--options lgScreenView" @click="${this.collapseOrg}">${this.icons.collapse} &nbsp; Collapse All</button>
-                <button title="Fit Screen" class="btn--options lgScreenView" @click=${this.fitOrg}>${this.icons.fit} &nbsp; Fit Screen</button>
+                <button title="Expand Out Chart" class="btn--options lgScreenView" @click="${this.expandOrg}"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Expand Organization Chart"
+                  @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.expandOrg(e)}">
+                  ${this.icons.expand} &nbsp; Expand All
+                </button>
+                <button title="Collapse Chart" class="btn--options lgScreenView" @click="${this.collapseOrg}"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Collapse Organization Chart"
+                  @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.collapseOrg(e)}">
+                  ${this.icons.collapse} &nbsp; Collapse All
+                </button>
+                <button title="Fit Screen" class="btn--options lgScreenView" @click=${this.fitOrg}
+                  tabindex="0"
+                  role="button"
+                  aria-label="Collapse Organization Chart"
+                  @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.fitOrg(e)}">
+                  ${this.icons.fit} &nbsp; Fit Screen
+                </button>
 
-                <button title="Expand Out Chart" class="btn--options smScreenView" @click="${this.expandOrg}">${this.icons.expand} &nbsp; Expand</button>
-                <button title="Collapse Chart" class="btn--options smScreenView" @click="${this.collapseOrg}">${this.icons.collapse} &nbsp; Collapse</button>
-                <button title="Fit Screen" class="btn--options smScreenView" @click=${this.fitOrg}>${this.icons.fit} &nbsp; Fit </button>
+
+
+                <button title="Expand Out Chart" class="btn--options smScreenView" @click="${this.expandOrg}"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Expand Organization Chart"
+                  @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.expandOrg(e)}">
+                  ${this.icons.expand} &nbsp; Expand
+                </button>
+                <button title="Collapse Chart" class="btn--options smScreenView" @click="${this.collapseOrg}"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Collapse Organization Chart"
+                  @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.collapseOrg(e)}">
+                  ${this.icons.collapse} &nbsp; Collapse
+                </button>
+                <button title="Fit Screen" class="btn--options smScreenView" @click=${this.fitOrg}
+                  tabindex="0"
+                  role="button"
+                  aria-label="Collapse Organization Chart"
+                  @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.fitOrg(e)}">
+                ${this.icons.fit} &nbsp; Fit 
+              </button>
               </div>
             </div>
             <div class="bottom-options">
@@ -260,13 +308,26 @@ return html`
                     class="search-bar"
                     type="search"
                     placeholder="Find a name..."
+                    aria-label="Search for a name"
                     @input=${(e) => this.filterChart(e)}
                   />
                 </div>
 
                 <div class="bottom-item" style="float:right;margin-right:10px;gap:10px;">
-                  <button title="Zoom Out" style="margin-right:7px;" class="btn--options zoom" @click="${this.zoomOut}">${this.icons.zoomOut}</button>
-                  <button title="Zoom In" class="btn--options zoom" @click="${this.zoomIn}">${this.icons.zoomIn}</button>
+                  <button title="Zoom Out" style="margin-right:7px;" class="btn--options zoom" @click="${this.zoomOut}"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Zoom Out of Organization Chart"
+                    @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.zoomOut(e)}">
+                    ${this.icons.zoomOut}
+                  </button>
+                  <button title="Zoom In" class="btn--options zoom" @click="${this.zoomIn}"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Zoom In of Organization Chart"
+                    @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.zoomIn(e)}">
+                    ${this.icons.zoomIn}
+                  </button>
                 </div>
 
             </div>
