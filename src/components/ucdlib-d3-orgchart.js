@@ -382,7 +382,7 @@ export default class UcdlibD3OrgChart extends LitElement {
       .nodeHeight(() => 80)
       .childrenMargin(() => 125)
       .compactMarginBetween(() => 75)
-      .nodeButtonY(() => 25)
+      .nodeButtonY(() => 40)
       .linkUpdate(function (d, i, arr) {
         d3.select(this)
         .attr('stroke', (d) =>
@@ -444,7 +444,7 @@ export default class UcdlibD3OrgChart extends LitElement {
                         <div aria-label="Department: ${d.data.departmentName}" tabindex="0" style="top:-20px;width:${d.width}px;text-align:center;color:#022851;">
                               <div aria-hidden="true" style="display:inline-block;height:18px;padding:8px;padding-bottom:0px;border-radius:5px;font-weight:bold;font-size:12px;"> ${d.data.departmentName}</div>
                         </div>
-                        <div role="group" aria-label="Employee: ${d.data.fullName}, ${d.data.title}" tabindex="0" style="display:flex; justify-content: center;vertical-align:middle; align-items:center;background-color:${d.color};height:45px;text-align:center;padding:12px;color:#022851;font-weight:bold;font-size:14px;border-radius:5px;">
+                        <div role="group" aria-label="Employee: ${d.data.fullName}, ${d.data.title}" tabindex="0" style="display:flex; justify-content: center;vertical-align:middle; align-items:center;background-color:${d.color};height:60px;text-align:center;padding:12px;color:#022851;font-weight:bold;font-size:14px;border-radius:5px;">
                             <span>${d.data.fullName}<span><br />
                             <span style="font-size:12px;font-weight:lighter;">${d.data.title}</span>
                         </div>
