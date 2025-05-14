@@ -337,6 +337,7 @@ return html`
 
 
         <div class='chart-container' id="chart-container" ></div>
+        <caption><p style="margin-top:15px;font-style: italic;color:#484848">${this.latestUpdated != '' ? html`Updated ${this.latestUpdated}` : html``}</p></caption>
     </div>
 `;}
 

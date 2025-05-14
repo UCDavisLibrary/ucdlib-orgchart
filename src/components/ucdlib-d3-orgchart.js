@@ -5,6 +5,7 @@ import {json} from 'd3';
 import * as d3 from 'd3';
 import html2pdf from 'html2pdf.js';
 import { Canvg } from 'canvg';
+import axios from 'axios';
 
 /**
  * @description Organizational Chart Render
@@ -48,6 +49,7 @@ export default class UcdlibD3OrgChart extends LitElement {
     this.orgChart = null; // Reference to the OrgChart instance
     this.isVertical = true;
     this.lengthenNodeObject = [];
+    this.latestUpdated = '';
     this.icons = {
       expand: html`<svg class="icon-size" fill="#022851" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M208 80c0-26.5 21.5-48 48-48l64 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-8 0 0 40 152 0c30.9 0 56 25.1 56 56l0 32 8 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-64 0c-26.5 0-48-21.5-48-48l0-64c0-26.5 21.5-48 48-48l8 0 0-32c0-4.4-3.6-8-8-8l-152 0 0 40 8 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-64 0c-26.5 0-48-21.5-48-48l0-64c0-26.5 21.5-48 48-48l8 0 0-40-152 0c-4.4 0-8 3.6-8 8l0 32 8 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-64 0c-26.5 0-48-21.5-48-48l0-64c0-26.5 21.5-48 48-48l8 0 0-32c0-30.9 25.1-56 56-56l152 0 0-40-8 0c-26.5 0-48-21.5-48-48l0-64z"/></svg>`,
       vertical: html`<svg width="20px" height="20px" fill="#022851" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M40 352l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zm192 0l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zM40 320c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0zM232 192l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zM40 160c-22.1 0-40-17.9-40-40L0 72C0 49.9 17.9 32 40 32l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0zM232 32l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40z"/></svg>`,
@@ -65,12 +67,32 @@ export default class UcdlibD3OrgChart extends LitElement {
   }
 
   /**
+   * @description Get last modified from file
+   */
+  async getLastModified() {
+    try {
+      const response = await axios.head(this.src);
+      let recentDate = response.headers['last-modified'];
+      const formatDate = (date) => {
+        const options = { month: 'long', day: 'numeric', year: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+      };
+      const myDate = new Date(recentDate);
+      this.latestUpdated = formatDate(myDate);
+    } catch (err) {
+      console.error('Error:', err.message);
+    }
+  }
+  
+
+  /**
    * @description Runs the render options
    */
   runRender() {
     if (this.csvData.length !== 0) {
       this.renderOrgChart(this.csvData);
     } else if (this.src !== ''){
+      this.getLastModified();
       json(this.src)
         .then((data) => {
           this.renderOrgChart(data);
