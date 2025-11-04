@@ -257,21 +257,21 @@ return html`
                 <button title="Expand Out Chart" class="btn--options lgScreenView" @click="${this.expandOrg}"
                   tabindex="0"
                   role="button"
-                  aria-label="Expand Organization Chart"
+                  aria-label="Expand All"
                   @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.expandOrg(e)}">
                   ${this.icons.expand} &nbsp; Expand All
                 </button>
                 <button title="Collapse Chart" class="btn--options lgScreenView" @click="${this.collapseOrg}"
                   tabindex="0"
                   role="button"
-                  aria-label="Collapse Organization Chart"
+                  aria-label="Collapse All"
                   @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.collapseOrg(e)}">
                   ${this.icons.collapse} &nbsp; Collapse All
                 </button>
                 <button title="Fit Screen" class="btn--options lgScreenView" @click=${this.fitOrg}
                   tabindex="0"
                   role="button"
-                  aria-label="Collapse Organization Chart"
+                  aria-label="Fit Screen"
                   @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.fitOrg(e)}">
                   ${this.icons.fit} &nbsp; Fit Screen
                 </button>
@@ -281,21 +281,21 @@ return html`
                 <button title="Expand Out Chart" class="btn--options smScreenView" @click="${this.expandOrg}"
                   tabindex="0"
                   role="button"
-                  aria-label="Expand Organization Chart"
+                  aria-label="Expand"
                   @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.expandOrg(e)}">
                   ${this.icons.expand} &nbsp; Expand
                 </button>
                 <button title="Collapse Chart" class="btn--options smScreenView" @click="${this.collapseOrg}"
                   tabindex="0"
                   role="button"
-                  aria-label="Collapse Organization Chart"
+                  aria-label="Collapse"
                   @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.collapseOrg(e)}">
                   ${this.icons.collapse} &nbsp; Collapse
                 </button>
                 <button title="Fit Screen" class="btn--options smScreenView" @click=${this.fitOrg}
                   tabindex="0"
                   role="button"
-                  aria-label="Collapse Organization Chart"
+                  aria-label="Fit"
                   @keydown="${(e) => (e.key === 'Enter' || e.key === ' ') && this.fitOrg(e)}">
                 ${this.icons.fit} &nbsp; Fit 
               </button>
